@@ -24,6 +24,8 @@ connection: {
   database : 'face_recognition'
 }})
 
+app.get('/',(req,res)=>{res.send('Everything is up')})
+
 app.post('/signin',(req,res)=>{signin.handleSignin(req,res,db,bcrypt,saltRounds)})
 
 app.post('/register',(req, res)=>{register.handleRegisters(req,res,bcrypt,saltRounds,db,knex)})
