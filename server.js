@@ -19,8 +19,11 @@ app.use(cors())
 const db = knex({client: 'pg',
 connection: {
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  ssl: {
+    rejectUnauthorized: false
+  }
 }})
+
 
 app.get('/',(req,res)=>{res.send('Everything is up')})
 
