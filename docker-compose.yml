@@ -1,0 +1,10 @@
+version: '3.8'
+
+services: 
+  backend-api: 
+    container_name: backend
+    build: ./
+    command: npm start
+    working_dir: /app
+    ports: 
+      - "3000:3000"
