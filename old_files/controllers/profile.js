@@ -16,4 +16,4 @@ db.select('*').from('users').where({id})
 
 module.exports = {
     handleProfiles:handleProfiles
-} 
+}

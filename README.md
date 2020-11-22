@@ -1,6 +1,11 @@
-# face_recognition_ai_backend
+# SmartBrain-api - v2
+Final project for Udemy course
 
+1. Clone this repo
+2. Run `npm install`
+3. Run `npm start`
+4. You must add your own API key in the `controllers/image.js` file to connect to Clarifai API.
 
+You can grab Clarifai API key [here](https://www.clarifai.com/)
 
-This is the backend produced for my frontend app 'Face Recognition AI' which can be found in my repository.
-
+** Make sure you use postgreSQL instead of mySQL for this code base.

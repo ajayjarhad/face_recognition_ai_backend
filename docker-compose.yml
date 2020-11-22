@@ -1,10 +1,33 @@
-version: '3.8'
+version: '3.3'
 
 services: 
-  backend-api: 
+  #Backend API
+  backend: 
     container_name: backend
     build: ./
     command: npm start
-    working_dir: /app
+    working_dir: /usr/src/theApp
+    environment: 
+      POSTGRES_USER: postDoc
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: smart-brains-docker
+      POSTGRES_HOST: postgres
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    links:
+      - postgres
     ports: 
-      - "3000:3000"
+      - "3552:3552"
+  #  volumes:
+  #      - ./:/usr/src/theApp
+
+  # Postgres API
+  postgres:
+    environment: 
+      POSTGRES_USER: postDoc
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: smart-brains-docker
+      POSTGRES_HOST: postgres
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    build: ./postgres
+    ports:
+      - "5432:5432"

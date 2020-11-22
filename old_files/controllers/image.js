@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai')
 
 const app = new Clarifai.App ({
-   apiKey: 'e242210386b14b15a85b870be21964ec'
+   apiKey: 'e242210386b14b15a85b870be21964ec'    // REMEMBER TO PUT THIS CODE AFTER TESTING process.env.API_CLARIFAI_KEY
 })
 
 const handleApiCalls = (req, res) =>{
@@ -30,4 +30,4 @@ const {id} = req.body
 module.exports = {
     handleImage,
     handleApiCalls,
-} 
+}
