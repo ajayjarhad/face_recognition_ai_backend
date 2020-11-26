@@ -24,11 +24,12 @@ connection: {
   database : process.env.POSTGRES_DB
 }})
 app.get('/',(req,res)=>{res.send('Everything is up')})
-app.post('/signin',(req,res)=>{signin.handleSignin(req,res,db,bcrypt,saltRounds)})
+app.post('/signin',(req,res)=>{signin.handleSigninAuthentication(req,res,db,bcrypt,saltRounds)})
 
 app.post('/register',(req, res)=>{register.handleRegisters(req,res,bcrypt,saltRounds,db,knex)})
 
 app.get('/profile/:id',(req, res)=>{profile.handleProfiles(req,res,db)})
+app.post('/profile/:id', (req, res) => { profile.handleProfileUpdate(req, res, db) })
 
 app.put('/image',(req,res)=>{image.handleImage(req,res,db)})
 

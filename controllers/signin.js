@@ -3,27 +3,35 @@ const handleSignin = (req,res,db,bcrypt,saltRounds) =>{
   const {email,password} = req.body
   
   if(!email || !password){
-      return res.json('Empty input').status(400)
+      return Promise.reject('Incorrect  form submission')
   }
   
-  db.select('hash', 'email').from('login')
+ return db.select('hash', 'email').from('login')
   .where('email', '=',email)
   .then(data => {
       const isValid = bcrypt.compareSync(password,data[0].hash)
       if(isValid){
        return db.select('*').from('users')
        .where('email', '=', email)
-       .then(user=>{
-           res.json(user[0])
-       })
+       .then(user=> user[0])
        .catch(err=>{
-           res.json('Unable to get user').status(400)
+           Promise.reject('Unable to get user')
        })
-      }else{res.json('Invalid credentials').status(400)}
+      }else{Promise.reject('Invalid credentials')}
   })
-  .catch(err=> res.json('Invalid credentials').status(400))
+  .catch(err=> Promise.reject('Invalid credentials'))
+  }
+
+const getAuthToken = () => {
+    console.log('auth ok');
+}
+
+const signinAuthentication = (db, bcrypt) = (req, res) => {
+    const { authorization } = req.headers;
+    return authorization ? getAuthTokenId() : handleSignin(req, res, db, bcrypt, saltRound).then(data => res.json(data))
+    .catch(err => res.status(400).json(err))
   }
   
   module.exports = {
-      handleSignin : handleSignin
+    signinAuthentication
   } 
