@@ -9,9 +9,10 @@ This backend uses docker, if you want to use it on locally, make sure you have d
 
 
 To test the app you can use the following login credentials 
+```sh
 username: admin@email.com
 password: pass
-
+```
 Or you can register as a new user 😊
 
 
